@@ -1,0 +1,31 @@
+=== WASHOUT DECISION LOGIC FORMULAS ===
+
+INPUT SECTIONS:
+Row 2-7: Previous Product selection and properties
+Row 8-12: Next Product selection and properties
+
+DECISION FORMULAS:
+Washout? (C14): =IF(OR(AND(F3=F9,E3=E9,G3<=G9,NOT(OR(H3="18D MM",H3="CD MM",H3="SVD MM",AND(H3="TAE MM",OR(G3=5,G3=16))))),AND(D9="TDA",F3=F9,G3<=G9,OR(D3="Nonyl Phenol",D3="Alcohol C9-C11",D3="Alcohol C10-12")),AND(H3="Berol",H9="Berol"),AND(D3="Etho",E3=E9,G3>2,G9>2,NOT(OR(H3="18D MM",H3="CD MM",H3="SVD MM",AND(H3="TAE MM",OR(G3=5,G3=16))))),E9=C3),"NO","YES")
+
+Washout Type (D14): =IF(C14="NO","",IF(OR(AND(H3="18D MM",OR(H9="18D MM",H9="18D 2M",H9="SVD MM",H9="TAE MM")),AND(H3="18D 2M",OR(H9="E-9",H9="TAE 2M",H9="TAE MM")),AND(H3="CD 2M",OR(H9="18D 2M",H9="18D MM",H9="E-9",H9="SVD 2M",H9="SVD MM",H9="TAE 2M",H9="TAE MM")),AND(H3="CD MM",OR(H9="CD 2M",H9="CD MM",H9="E-9",H9="SVD MM",H9="TAE MM")),AND(H3="SVD 2M",OR(H9="CD 2M",H9="CD MM",H9="E-9",H9="TAE 2M",H9="TAE MM",H9="18D MM",H9="SVD 2M")),AND(H3="SVD MM",OR(H9="CD 2M",H9="CD MM",H9="E-9",H9="TAE 2M",H9="TAE MM",H9="18D MM",H9="SVD 2M")),AND(H3="TAE 2M",OR(H9="18D MM",H9="E-9",H9="SVD 2M",H9="SVD MM")),AND(H3="TAE MM",OR(H9="18D MM",H9="E-9",H9="SVD MM",H9="TAE 2M")),AND(E3=E9,F3=F9,G3>=G9,NOT(E3="Nonyl Phenol")),AND(E3=E9,F3<>F9,G3<=G9),AND(D3="Etho",E3=E9,G3>2,G9>2,OR(H3="18D MM",H3="CD MM",H3="SVD MM",AND(H3="TAE MM",OR(G3=5,G9=16))))),"HEEL WASH","FULL WASH"))
+
+Acid Wash? (E14): =IF(OR(C9="ETHOMEEN C/25A",C9="ETHOMEEN C/17",C9="ETHOMEEN C/15",AND(OR(D9="Etho",D9="Propo"),G9=2,G3<>2,NOT(C9="ETHOMEEN C/12M")),AND(D9="Propo",D3="Etho"),AND(C9="ETHODUOMEEN T/13",G3<>2),LEFT(C9,8)="ARMOSTAT"),"YES","NO")
+
+NOTES FORMULAS:
+Row 17: =IFERROR(IF(D9="Alcohol-BF3","Before any Berol campaing, do 1 Full Wash and 1 Soft Water Wash with 50lb of BF3. No wash in between consecutive Berol batches","-"),"-")
+Row 18: =IF(OR(C9="ETHOMEEN T/15",C9="ETHOMEEN T/25"),"If making the product in V700, no need for heel wash in between batches","-")
+Row 19: =IF(C9="Ethylan TD-100","During campaings of Ethylan TD-100, wash every 3 batches in a row","-")
+Row 20: =IF(C3="Ethomeen 18/12","After Ethomeen 18/12 do 2 full washes","-")
+Row 21: =IF(LEFT(C9,8)="ARMOSTAT","Only first batch needs a FWR","-")
+Row 22: =IF(OR(C9="ETHOMEEN C/15",C9="ETHOMEEN C/17",C9="ETHOMEEN C/25A"),"Perform an acid wash before batch (add acetic to full wash)","-")
+
+
+MATRIX GENERATION (Row 24):
+A24: =IF(MOD(ROW()-24,COUNTA(tblProducts[Description]))=0,A23+1,A23)
+B24: =MOD(ROW()-24,COUNTA(tblProducts[Description]))+1
+C24: =_xlfn.XLOOKUP(A24,tblProducts[Column1],tblProducts[Description])
+D24: =_xlfn.XLOOKUP(B24,tblProducts[Column1],tblProducts[Description])
+E24: NO
+G24: NO
+H24: ------
+I24: =IF(E24="NO",0,IF(F24="HEEL WASH",1.5,2))+IF(G24="NO",0,2)
