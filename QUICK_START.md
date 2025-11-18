@@ -1,10 +1,31 @@
 # Alkox Washout Matrix - Python Tool
 
+## Setup (First Time Only)
+
+### 1. Create Virtual Environment
+```powershell
+cd "L:\Washout Matrix"
+python -m venv .venv
+```
+
+### 2. Activate Virtual Environment
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+### 3. Install Dependencies
+```powershell
+pip install -r requirements.txt
+```
+
+---
+
 ## Quick Start
 
 ### Generate and Verify Washout Matrix (Recommended)
 ```powershell
 cd "L:\Washout Matrix"
+.venv\Scripts\Activate.ps1
 python main.py
 ```
 

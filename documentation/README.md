@@ -3,6 +3,47 @@
 ## Overview
 This project converts the VBA macro from the Excel file `Alkox Washout Matrix Product Wheel.xlsm` into a standalone Python script that generates a complete washout matrix for product transitions.
 
+---
+
+## Installation
+
+### Prerequisites
+- Python 3.8 or higher
+- Windows OS (for pywin32 compatibility)
+
+### Setup Steps
+
+1. **Clone the repository** (or download the project)
+   ```powershell
+   git clone https://github.com/PorkChopExpress86/AOW-Washout-Table.git
+   cd AOW-Washout-Table
+   ```
+
+2. **Create a virtual environment**
+   ```powershell
+   python -m venv .venv
+   ```
+
+3. **Activate the virtual environment**
+   ```powershell
+   .venv\Scripts\Activate.ps1
+   ```
+   
+   *Note: If you get an execution policy error, run:*
+   ```powershell
+   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+   ```
+
+4. **Install required packages**
+   ```powershell
+   pip install -r requirements.txt
+   ```
+
+5. **Verify installation**
+   ```powershell
+   python main.py
+   ```
+
 ## Generated Files
 
 ### Main Script
@@ -89,8 +130,14 @@ Additional notes are generated for:
 # Make sure you're in the correct directory
 cd "L:\Washout Matrix"
 
-# Run the main generator script
-python washout_matrix_generator.py
+# Activate the virtual environment
+.venv\Scripts\Activate.ps1
+
+# Run the main script (generates and verifies)
+python main.py
+
+# Or run the generator script directly
+python scripts\washout_matrix_generator.py
 ```
 
 ### Output Statistics
