@@ -2,7 +2,7 @@ import pandas as pd
 import openpyxl
 
 # Load the output file
-output_file = r"L:\Washout Matrix\Washout_Matrix_Output.xlsx"
+output_file = "Washout_Matrix_Output.xlsx"
 
 print("=== Washout Matrix Output Verification ===\n")
 

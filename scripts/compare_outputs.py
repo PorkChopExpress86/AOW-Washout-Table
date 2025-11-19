@@ -11,11 +11,11 @@ print("Comparing Python Output vs Original Excel Data")
 print("=" * 80)
 
 # Load Python-generated output
-python_output = pd.read_excel(r'L:\Washout Matrix\Washout_Matrix_Output.xlsx', 
+python_output = pd.read_excel('Washout_Matrix_Output.xlsx', 
                                sheet_name='Washout Matrix')
 
 # Load original Excel data
-wb = openpyxl.load_workbook(r'L:\Washout Matrix\Alkox Washout Matrix Product Wheel.xlsm', 
+wb = openpyxl.load_workbook('Alkox Washout Matrix Product Wheel.xlsm', 
                              data_only=True)
 ws = wb['Sheet1']
 

@@ -419,8 +419,8 @@ def main():
     print()
 
     # File paths
-    input_file = r"L:\Washout Matrix\Alkox Washout Matrix Product Wheel.xlsm"
-    output_file = r"L:\Washout Matrix\Washout_Matrix_Output.xlsx"
+    input_file = "Alkox Washout Matrix Product Wheel.xlsm"
+    output_file = "Washout_Matrix_Output.xlsx"
 
     # Create generator
     generator = WashoutMatrixGenerator(input_file)

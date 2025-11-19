@@ -4,7 +4,7 @@ from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
 
 # Load the existing output file
-output_file = r'L:\Washout Matrix\Washout_Matrix_Output.xlsx'
+output_file = 'Washout_Matrix_Output.xlsx'
 
 print("Loading existing output file...")
 df = pd.read_excel(output_file, sheet_name='Washout Matrix')
